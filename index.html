@@ -93,6 +93,34 @@ S作成可能: 0個<br>
 次のSまであと: 0
 </div>
 
+<h3>モンスター登録</h3>
+
+名前
+<input type="text" id="mname">
+
+<br>
+
+D→C
+<input type="number" id="mdc" value="3">
+
+C→B
+<input type="number" id="mcb" value="3">
+
+B→A
+<input type="number" id="mba" value="3">
+
+A→S
+<input type="number" id="mas" value="4">
+
+<br><br>
+
+<button onclick="saveMonster()">
+登録
+</button>
+
+<h4>登録済み</h4>
+
+<div id="monsterList"></div>
 
 
 <script>
@@ -138,7 +166,56 @@ function calc() {
         "次のSまであと: " + remain + "D";
 }
 
+    function saveMonster() {
 
+    let name = document.getElementById("mname").value;
+
+    let dc = Number(document.getElementById("mdc").value);
+    let cb = Number(document.getElementById("mcb").value);
+    let ba = Number(document.getElementById("mba").value);
+    let as = Number(document.getElementById("mas").value);
+
+    if (!name) return;
+
+    let data = JSON.parse(
+        localStorage.getItem("monsters") || "{}"
+    );
+
+    data[name] = {
+        dc: dc,
+        cb: cb,
+        ba: ba,
+        as: as
+    };
+
+    localStorage.setItem(
+        "monsters",
+        JSON.stringify(data)
+    );
+
+    loadMonsterList();
+}
+
+    function loadMonsterList() {
+
+    let data = JSON.parse(
+        localStorage.getItem("monsters") || "{}"
+    );
+
+    let html = "";
+
+    for (let name in data) {
+
+        html += name + "<br>";
+
+    }
+
+    document.getElementById(
+        "monsterList"
+    ).innerHTML = html;
+}
+
+    
 // 短縮
 function dId(){ return document.getElementById("d"); }
 function cId(){ return document.getElementById("c"); }
@@ -152,6 +229,8 @@ function asId(){ return document.getElementById("as"); }
 
 
 calc();
+
+    loadMonsterList();
 
 </script>
 
