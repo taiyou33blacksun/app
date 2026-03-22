@@ -217,7 +217,11 @@ function loadMonsterList() {
 
     for (let name in data) {
 
-        html += name + "<br>";
+        html +=
+            name +
+            ' <button onclick="deleteMonster(\'' +
+            name +
+            '\')">削除</button><br>';
 
         select +=
             "<option value='" + name + "'>" +
@@ -233,6 +237,7 @@ function loadMonsterList() {
         "monsterSelect"
     ).innerHTML = select;
 }
+
     
 // 短縮
 function dId(){ return document.getElementById("d"); }
@@ -299,7 +304,23 @@ inputs.forEach((input, index) => {
     calc();
 }
 
-</script>
+    function deleteMonster(name) {
 
+    let data = JSON.parse(
+        localStorage.getItem("monsters") || "{}"
+    );
+
+    delete data[name];
+
+    localStorage.setItem(
+        "monsters",
+        JSON.stringify(data)
+    );
+
+    loadMonsterList();
+}
+
+</script>
+    
 </body>
 </html>
