@@ -48,7 +48,7 @@ input {
 
         <h3>モンスター呼び出し</h3>
     
-<select id="monsterSelect" onchange="loadMonsterSetting()">
+<select id="monsterSelect">
 <option value="">選択してください</option>
 </select>
 
@@ -320,6 +320,13 @@ inputs.forEach((input, index) => {
     loadMonsterList();
 }
 
+    document
+.getElementById("monsterSelect")
+.addEventListener(
+    "change",
+    loadMonsterSetting
+);
+    
 </script>
     
 </body>
