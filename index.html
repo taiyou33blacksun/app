@@ -49,19 +49,19 @@ input {
 <div class="title">所持数</div>
 
 <div class="box">
-D <input type="number" id="d" oninput="calc()">
+D <input type="number" id="d" class="move" oninput="calc()">
 </div>
 
 <div class="box">
-C <input type="number" id="c" oninput="calc()">
+C <input type="number" id="c" class="move" oninput="calc()">
 </div>
 
 <div class="box">
-B <input type="number" id="b" oninput="calc()">
+B <input type="number" id="b" class="move" oninput="calc()">
 </div>
 
 <div class="box">
-A <input type="number" id="a" oninput="calc()">
+A <input type="number" id="a" class="move" oninput="calc()">
 </div>
 
 
@@ -152,6 +152,30 @@ function asId(){ return document.getElementById("as"); }
 
 
 calc();
+
+</script>
+
+<script>
+
+const inputs = document.querySelectorAll(".move");
+
+inputs.forEach((input, index) => {
+
+    input.addEventListener("keydown", function(e) {
+
+        if (e.key === "Enter") {
+
+            e.preventDefault();
+
+            if (index + 1 < inputs.length) {
+                inputs[index + 1].focus();
+            }
+
+        }
+
+    });
+
+});
 
 </script>
 
