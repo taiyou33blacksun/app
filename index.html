@@ -49,19 +49,19 @@ input {
 <div class="title">所持数</div>
 
 <div class="box">
-D <input type="number" id="d" value="0" oninput="calc()">
+D <input type="number" id="d" oninput="calc()">
 </div>
 
 <div class="box">
-C <input type="number" id="c" value="0" oninput="calc()">
+C <input type="number" id="c" oninput="calc()">
 </div>
 
 <div class="box">
-B <input type="number" id="b" value="0" oninput="calc()">
+B <input type="number" id="b" oninput="calc()">
 </div>
 
 <div class="box">
-A <input type="number" id="a" value="0" oninput="calc()">
+A <input type="number" id="a" oninput="calc()">
 </div>
 
 
@@ -99,15 +99,15 @@ S作成可能: 0個<br>
 
 function calc() {
 
-    let d = Number(dId().value);
-    let c = Number(cId().value);
-    let b = Number(bId().value);
-    let a = Number(aId().value);
+    let d = Number(dId().value || 0);
+    let c = Number(cId().value || 0);
+    let b = Number(bId().value || 0);
+    let a = Number(aId().value || 0);
 
-    let dc = Number(dcId().value);
-    let cb = Number(cbId().value);
-    let ba = Number(baId().value);
-    let as = Number(asId().value);
+   let dc = Number(dcId().value || 0);
+   let cb = Number(cbId().value || 0);
+   let ba = Number(baId().value || 0);
+   let as = Number(asId().value || 0);
 
     // S1個に必要なD数
     let needD = dc * cb * ba * as;
