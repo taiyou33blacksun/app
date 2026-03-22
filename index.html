@@ -45,6 +45,14 @@ input {
 
 <h2>Sランク進捗計算</h2>
 
+    
+<select id="monsterSelect"
+onchange="loadMonsterSetting()">
+<option value="">
+選択してください
+</option>
+</select>
+
 
 <div class="title">所持数</div>
 
@@ -92,6 +100,14 @@ A→S <input type="number" id="as" value="4" oninput="calc()">
 S作成可能: 0個<br>
 次のSまであと: 0
 </div>
+
+    
+<h3>モンスター呼び出し</h3>
+
+<select id="monsterSelect" onchange="loadMonsterSetting()">
+<option value="">選択してください</option>
+</select>
+    
 
 <h3>モンスター登録</h3>
 
@@ -196,7 +212,7 @@ function calc() {
     loadMonsterList();
 }
 
-    function loadMonsterList() {
+function loadMonsterList() {
 
     let data = JSON.parse(
         localStorage.getItem("monsters") || "{}"
@@ -204,17 +220,27 @@ function calc() {
 
     let html = "";
 
+    let select =
+        '<option value="">選択してください</option>';
+
     for (let name in data) {
 
         html += name + "<br>";
 
+        select +=
+            "<option value='" + name + "'>" +
+            name +
+            "</option>";
     }
 
     document.getElementById(
         "monsterList"
     ).innerHTML = html;
-}
 
+    document.getElementById(
+        "monsterSelect"
+    ).innerHTML = select;
+}
     
 // 短縮
 function dId(){ return document.getElementById("d"); }
@@ -255,6 +281,31 @@ inputs.forEach((input, index) => {
     });
 
 });
+
+    function loadMonsterSetting() {
+
+    let name =
+        document.getElementById(
+            "monsterSelect"
+        ).value;
+
+    if (!name) return;
+
+    let data = JSON.parse(
+        localStorage.getItem("monsters") || "{}"
+    );
+
+    let m = data[name];
+
+    if (!m) return;
+
+    document.getElementById("dc").value = m.dc;
+    document.getElementById("cb").value = m.cb;
+    document.getElementById("ba").value = m.ba;
+    document.getElementById("as").value = m.as;
+
+    calc();
+}
 
 </script>
 
