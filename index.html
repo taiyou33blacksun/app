@@ -255,6 +255,13 @@ calc();
 
     loadMonsterList();
 
+    document
+.getElementById("monsterSelect")
+.addEventListener(
+    "change",
+    loadMonsterSetting
+);
+
 </script>
 
 <script>
@@ -304,7 +311,7 @@ inputs.forEach((input, index) => {
     calc();
 }
 
-    function deleteMonster(name) {
+function deleteMonster(name) {
 
     let data = JSON.parse(
         localStorage.getItem("monsters") || "{}"
@@ -318,14 +325,6 @@ inputs.forEach((input, index) => {
     );
 
     loadMonsterList();
-
-    document
-    .getElementById("monsterSelect")
-    .addEventListener(
-        "change",
-        loadMonsterSetting
-    );
-
     
 }
  
