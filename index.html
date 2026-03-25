@@ -236,6 +236,10 @@ function loadMonsterList() {
     document.getElementById(
         "monsterSelect"
     ).innerHTML = select;
+
+    document
+    .getElementById("monsterSelect")
+    .onchange = loadMonsterSetting;
 }
 
     
@@ -254,13 +258,6 @@ function asId(){ return document.getElementById("as"); }
 calc();
 
     loadMonsterList();
-
-    document
-.getElementById("monsterSelect")
-.addEventListener(
-    "change",
-    loadMonsterSetting
-);
 
 </script>
 
